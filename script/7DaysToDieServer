@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+if [ `whoami` != "$STEAM_USER" ]; then
+	exec gosu $STEAM_USER $0 "$@"
+fi
+
+cd $DTD7_HOME
+
+exec ./7DaysToDieServer.x86_64 \
+	-batchmode \
+	-configfile=$CONFIG_FILE \
+	-dedicated \
+	-logfile /dev/stdout \
+	-nographics \
+	-quit \
+	"$@"
